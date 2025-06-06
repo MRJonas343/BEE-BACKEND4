@@ -1,0 +1,31 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"javascript": {
+		"formatter": {
+			"semicolons": "asNeeded"
+		}
+	},
+	"linter": {
+		"enabled": true,
+
+		"rules": {
+			"complexity": {
+				"noStaticOnlyClass": "off"
+			},
+			"recommended": true,
+			"style": {
+				"useImportType": "off",
+				"noNonNullAssertion": "off"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": "off"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "off"
+			}
+		}
+	}
+}

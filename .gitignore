@@ -1,0 +1,5 @@
+# deps
+node_modules/
+init/
+backup.sql
+.env

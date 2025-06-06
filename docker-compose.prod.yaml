@@ -1,0 +1,9 @@
+#this is the production environment
+# pro tips for the future:
+# do not use the .sql init file,
+# instead just mount a volume for the db data
+# and connect to the db in maybe workbench or php my admin
+# or any other tool you want and load the .sql file
+# so when the prod app is deployed the db is already created
+# and it won't cause any problems
+# we are trusting the data to the volume
