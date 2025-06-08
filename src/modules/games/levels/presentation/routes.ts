@@ -1,13 +1,16 @@
 import { AppHono, createAppHono } from "../../../../utils"
-import { LevelsController } from "./controller"
+import { LevelsController } from "./levels.controller"
+import { LevelsDatasource } from "../infrastructure"
 
 export class LevelsRoutes {
 	static get routes(): AppHono {
 		const router = createAppHono()
-		const controller = new LevelsController()
+
+		const datasource = new LevelsDatasource()
+		const controller = new LevelsController(datasource)
 
 		//define the main routes of the module level
-		router.get("/getLevel", ...controller.getLevel)
+		router.get("/getLevels/:userId/:game", ...controller.getLevels)
 
 		return router
 	}

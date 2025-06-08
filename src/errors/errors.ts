@@ -35,4 +35,5 @@ export const zodErrorsMap = new Map<string, ErrorName>([
 	["englishLevel", ErrorName.INVALID_ENGLISH_LEVEL],
 	["game", ErrorName.INVALID_GAME],
 	["level", ErrorName.INVALID_LEVEL],
+	["userId", ErrorName.USER_NOT_FOUND],
 ])

@@ -1,0 +1,29 @@
+#this is the qa environment
+# it is used to test the application before it is deployed to production
+# it will load the .sql file from the init folder
+# it will use a volume for the db data
+services:
+  db:
+    container_name: mysql_db
+    image: mysql:9.3.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${BDROOTPASS}
+      MYSQL_PASSWORD: ${DBPASS}
+      MYSQL_DATABASE: ${DBNAME}
+      MYSQL_USER: ${DBUSER}
+      MYSQL_PORT: ${DBPORT}
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    command: --init-file /docker-entrypoint-initdb.d/backup.sql
+
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
