@@ -3,6 +3,8 @@ import { LevelsDatasource } from "../infrastructure"
 import { GetLevelsDto } from "../domain"
 import { ErrorHandler } from "../../../../utils"
 import { ErrorName } from "../../../../errors"
+import { User } from "better-auth/types"
+import { Context } from "hono"
 
 export class LevelsController {
 	private factory = createFactory()
@@ -12,11 +14,15 @@ export class LevelsController {
 		this.levelsDatasource = levelsDatasource
 	}
 
-	getLevels = this.factory.createHandlers(async (c) => {
-		const userId = c.req.param("userId")
+	getLevels = this.factory.createHandlers(async (c: Context) => {
+		const user = c.get("user") as User
+
 		const game = c.req.param("game")
 
-		const [dtoError, getLevelsDto] = GetLevelsDto.create({ userId, game })
+		const [dtoError, getLevelsDto] = GetLevelsDto.create({
+			userId: user.id,
+			game,
+		})
 
 		if (dtoError)
 			return ErrorHandler.sendErrorResponse(c, ErrorName.INVALID_GAME)
