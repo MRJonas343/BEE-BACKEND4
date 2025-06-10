@@ -10,7 +10,6 @@ export class AppRoutes {
 
 		router.route("/auth", AuthRoutes.routes)
 
-		//Levels routes
 		router.route("/levels", LevelsRoutes.routes)
 
 		return router

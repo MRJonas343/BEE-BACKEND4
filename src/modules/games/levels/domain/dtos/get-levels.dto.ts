@@ -3,7 +3,7 @@ import { VALID_GAMES } from "../level.entity"
 
 const getLevelsSchema = z.object({
 	userId: z.string().min(1, "User ID is required"),
-	game: z.enum(["MemoryGame", "hangman"], {
+	game: z.enum(["MemoryGame", "HangmanGame"], {
 		errorMap: () => ({
 			message: `Game must be one of: ${VALID_GAMES.join(", ")}`,
 		}),
